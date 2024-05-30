@@ -1,0 +1,31 @@
+stages:
+  - build
+  - test
+  - deploy
+
+# Stage build
+build:
+  stage: build
+  script:
+    - docker build -t my-app .
+    - docker tag my-app registry.gitlab.com/b1ankx/kt7/my-app:latest
+    - docker push registry.gitlab.com/b1ankx/kt7/my-app:latest
+  only:
+    - main
+
+# Stage test
+test:
+  stage: test
+  script:
+    - node app.js  
+  only:
+    - main
+
+# Stage deploy
+deploy:
+  stage: deploy
+  script:
+    - docker pull registry.gitlab.com/b1ankx/kt7/my-app:latest
+    - docker run -d -p 80:5000 my-app
+  only:
+    - main
