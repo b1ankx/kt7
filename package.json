@@ -1,0 +1,14 @@
+{
+  "name": "my-json-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application that returns JSON response",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
